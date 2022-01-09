@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK:- Containing ViewController
-class ContainingViewController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var myHeaderView: UIView!
     @IBOutlet weak var myContainerView: UIView!
@@ -39,7 +39,7 @@ class ContainingViewController: UIViewController {
 
 // MARK:- ScrollViewContaining Delegate
 
-extension ContainingViewController: ScrollViewContainingDelegate {
+extension MainViewController: ScrollViewContainingDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // need to adjust the content offset to account for the content inset
         // negative because we are moving the header offscreen

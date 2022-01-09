@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddFxVewControllerViewController: UIViewController {
+class BuySellVewControllerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
