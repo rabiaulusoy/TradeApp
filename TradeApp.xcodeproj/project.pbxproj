@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111F7354278DF3FA00845E55 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F7353278DF3FA00845E55 /* Utils.swift */; };
+		111F7357278E09E000845E55 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F7356278E09E000845E55 /* TransactionCell.swift */; };
+		11365DFD278B687E006820F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11365DFC278B687E006820F5 /* LoginViewController.swift */; };
+		11365DFF278B6895006820F5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11365DFE278B6895006820F5 /* ProfileViewController.swift */; };
+		11365E01278B68AB006820F5 /* PerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11365E00278B68AB006820F5 /* PerformanceViewController.swift */; };
+		11365E03278B6D59006820F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11365E02278B6D59006820F5 /* GoogleService-Info.plist */; };
 		11C0E50C2785AA0F00BC8C12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E50B2785AA0F00BC8C12 /* AppDelegate.swift */; };
 		11C0E50E2785AA0F00BC8C12 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E50D2785AA0F00BC8C12 /* SceneDelegate.swift */; };
 		11C0E5102785AA0F00BC8C12 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E50F2785AA0F00BC8C12 /* MainViewController.swift */; };
@@ -14,10 +20,17 @@
 		11C0E5162785AA0F00BC8C12 /* TradeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E5142785AA0F00BC8C12 /* TradeApp.xcdatamodeld */; };
 		11C0E5182785AA0F00BC8C12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11C0E5172785AA0F00BC8C12 /* Assets.xcassets */; };
 		11C0E51B2785AA0F00BC8C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11C0E5192785AA0F00BC8C12 /* LaunchScreen.storyboard */; };
-		11C58F7B278777B700CB151F /* AddFxVewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C58F7A278777B700CB151F /* AddFxVewControllerViewController.swift */; };
+		11C58F7B278777B700CB151F /* BuySellVewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C58F7A278777B700CB151F /* BuySellVewControllerViewController.swift */; };
+		854A1D06145E43EA00CCAF5F /* Pods_TradeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B8736532C36354F02860D1 /* Pods_TradeApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111F7353278DF3FA00845E55 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		111F7356278E09E000845E55 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		11365DFC278B687E006820F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		11365DFE278B6895006820F5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		11365E00278B68AB006820F5 /* PerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceViewController.swift; sourceTree = "<group>"; };
+		11365E02278B6D59006820F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11C0E5082785AA0F00BC8C12 /* TradeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C0E50B2785AA0F00BC8C12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C0E50D2785AA0F00BC8C12 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +40,10 @@
 		11C0E5172785AA0F00BC8C12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11C0E51A2785AA0F00BC8C12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11C0E51C2785AA0F00BC8C12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11C58F7A278777B700CB151F /* AddFxVewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFxVewControllerViewController.swift; sourceTree = "<group>"; };
+		11C58F7A278777B700CB151F /* BuySellVewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySellVewControllerViewController.swift; sourceTree = "<group>"; };
+		72DC3EC4719576197C1B4D02 /* Pods-TradeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeApp.release.xcconfig"; path = "Target Support Files/Pods-TradeApp/Pods-TradeApp.release.xcconfig"; sourceTree = "<group>"; };
+		C4B8736532C36354F02860D1 /* Pods_TradeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TradeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5DEFAB9B3AFEF8DCCDEF382 /* Pods-TradeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeApp.debug.xcconfig"; path = "Target Support Files/Pods-TradeApp/Pods-TradeApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +51,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854A1D06145E43EA00CCAF5F /* Pods_TradeApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		111F7352278DF2E700845E55 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				111F7353278DF3FA00845E55 /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		111F7355278E09C400845E55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				111F7356278E09E000845E55 /* TransactionCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11365DFB278B686E006820F5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				11C58F7A278777B700CB151F /* BuySellVewControllerViewController.swift */,
+				11C0E50F2785AA0F00BC8C12 /* MainViewController.swift */,
+				11365DFC278B687E006820F5 /* LoginViewController.swift */,
+				11365DFE278B6895006820F5 /* ProfileViewController.swift */,
+				11365E00278B68AB006820F5 /* PerformanceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		11C0E4FF2785AA0F00BC8C12 = {
 			isa = PBXGroup;
 			children = (
 				11C0E50A2785AA0F00BC8C12 /* TradeApp */,
 				11C0E5092785AA0F00BC8C12 /* Products */,
+				F014795DA96DAA44473FA86C /* Pods */,
+				DC2D74390C763CE04D8A8696 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,17 +107,36 @@
 		11C0E50A2785AA0F00BC8C12 /* TradeApp */ = {
 			isa = PBXGroup;
 			children = (
+				111F7355278E09C400845E55 /* View */,
+				111F7352278DF2E700845E55 /* Utils */,
+				11365DFB278B686E006820F5 /* Controller */,
 				11C0E50B2785AA0F00BC8C12 /* AppDelegate.swift */,
 				11C0E50D2785AA0F00BC8C12 /* SceneDelegate.swift */,
-				11C0E50F2785AA0F00BC8C12 /* MainViewController.swift */,
 				11C0E5112785AA0F00BC8C12 /* Main.storyboard */,
 				11C0E5172785AA0F00BC8C12 /* Assets.xcassets */,
 				11C0E5192785AA0F00BC8C12 /* LaunchScreen.storyboard */,
 				11C0E51C2785AA0F00BC8C12 /* Info.plist */,
 				11C0E5142785AA0F00BC8C12 /* TradeApp.xcdatamodeld */,
-				11C58F7A278777B700CB151F /* AddFxVewControllerViewController.swift */,
+				11365E02278B6D59006820F5 /* GoogleService-Info.plist */,
 			);
 			path = TradeApp;
+			sourceTree = "<group>";
+		};
+		DC2D74390C763CE04D8A8696 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4B8736532C36354F02860D1 /* Pods_TradeApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F014795DA96DAA44473FA86C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E5DEFAB9B3AFEF8DCCDEF382 /* Pods-TradeApp.debug.xcconfig */,
+				72DC3EC4719576197C1B4D02 /* Pods-TradeApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11C0E51F2785AA0F00BC8C12 /* Build configuration list for PBXNativeTarget "TradeApp" */;
 			buildPhases = (
+				8A496B78EE47EBC4746FAF8B /* [CP] Check Pods Manifest.lock */,
 				11C0E5042785AA0F00BC8C12 /* Sources */,
 				11C0E5052785AA0F00BC8C12 /* Frameworks */,
 				11C0E5062785AA0F00BC8C12 /* Resources */,
+				BD49D9DA5F47070703877737 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11C0E51B2785AA0F00BC8C12 /* LaunchScreen.storyboard in Resources */,
+				11365E03278B6D59006820F5 /* GoogleService-Info.plist in Resources */,
 				11C0E5182785AA0F00BC8C12 /* Assets.xcassets in Resources */,
 				11C0E5132785AA0F00BC8C12 /* Main.storyboard in Resources */,
 			);
@@ -139,16 +208,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8A496B78EE47EBC4746FAF8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TradeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD49D9DA5F47070703877737 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TradeApp/Pods-TradeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TradeApp/Pods-TradeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TradeApp/Pods-TradeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		11C0E5042785AA0F00BC8C12 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11365DFD278B687E006820F5 /* LoginViewController.swift in Sources */,
 				11C0E5102785AA0F00BC8C12 /* MainViewController.swift in Sources */,
+				111F7354278DF3FA00845E55 /* Utils.swift in Sources */,
 				11C0E50C2785AA0F00BC8C12 /* AppDelegate.swift in Sources */,
+				11365E01278B68AB006820F5 /* PerformanceViewController.swift in Sources */,
 				11C0E5162785AA0F00BC8C12 /* TradeApp.xcdatamodeld in Sources */,
+				11365DFF278B6895006820F5 /* ProfileViewController.swift in Sources */,
 				11C0E50E2785AA0F00BC8C12 /* SceneDelegate.swift in Sources */,
-				11C58F7B278777B700CB151F /* AddFxVewControllerViewController.swift in Sources */,
+				111F7357278E09E000845E55 /* TransactionCell.swift in Sources */,
+				11C58F7B278777B700CB151F /* BuySellVewControllerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +408,7 @@
 		};
 		11C0E5202785AA0F00BC8C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5DEFAB9B3AFEF8DCCDEF382 /* Pods-TradeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -320,6 +437,7 @@
 		};
 		11C0E5212785AA0F00BC8C12 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72DC3EC4719576197C1B4D02 /* Pods-TradeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

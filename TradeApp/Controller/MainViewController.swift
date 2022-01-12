@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 // MARK:- Containing ViewController
 class MainViewController: UIViewController {
@@ -35,6 +36,17 @@ class MainViewController: UIViewController {
             scrollViewContained.scrollDelegate = self
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "buy" {
+            let buySellVC = segue.destination as! BuySellVewControllerViewController
+            buySellVC.transactionType = TransactionType.Buy
+        }
+        else if segue.identifier == "sell" {
+            let buySellVC = segue.destination as! BuySellVewControllerViewController
+            buySellVC.transactionType = TransactionType.Sell
+        }
+    }
 }
 
 // MARK:- ScrollViewContaining Delegate
@@ -46,13 +58,6 @@ extension MainViewController: ScrollViewContainingDelegate {
         let newTopConstraintConstant = -(scrollView.contentOffset.y + scrollView.contentInset.top)
         myHeaderViewTop.constant = min(0, max(-maxScrollAmount, newTopConstraintConstant))
         let isAtTop = myHeaderViewTop.constant == -maxScrollAmount
-
-        // handle changes for collapsed state
-        scrollViewScrolled(scrollView, didScrollToTop: isAtTop)
-    }
-
-    func scrollViewScrolled(_ scrollView: UIScrollView, didScrollToTop isAtTop:Bool) {
-        //myHeaderView.backgroundColor = isAtTop ? UIColor.green : UIColor.systemPurple
     }
 }
 
@@ -61,11 +66,14 @@ extension MainViewController: ScrollViewContainingDelegate {
 class TableViewController: UITableViewController,
                            ScrollViewContained {
 
+    var TransactionList : [Transaction] = []
     // used to connect the scrolling to the containing controller
     weak var scrollDelegate: ScrollViewContainingDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getDataFromDatabase()
     }
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // pass scroll events to the containing controller
@@ -73,8 +81,9 @@ class TableViewController: UITableViewController,
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TVC
-        cell.lblTitle.text = "USD"//"\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionCell
+//        cell.setSelected(true, animated: true)
+        cell.arrangeCell(transaction: TransactionList[indexPath.row])
         cell.layer.cornerRadius = 10
         cell.layer.borderWidth = 10
         return cell
@@ -89,11 +98,44 @@ class TableViewController: UITableViewController,
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return TransactionList.count
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension TableViewController {
+    func getDataFromDatabase(){
+        let firestoreDatabase = Firestore.firestore()
+        firestoreDatabase.collection("Transaction").addSnapshotListener { snapShot, error in
+            if error != nil {
+                Utils.makeAlert(vc: self, title: "Error", message: error?.localizedDescription ?? "Error occured when getting data from db!")
+            }
+            else {
+                if snapShot?.isEmpty != true {
+                    self.TransactionList.removeAll()
+                    for documentData in snapShot!.documents {
+                        guard let userEmail = documentData.get("userEmail") as? String else { return }
+                        guard let fromUnit = documentData.get("fromUnit") as? String else { return }
+                        guard let toUnit = documentData.get("toUnit") as? String else { return }
+                        guard let fromAmount = documentData.get("fromAmount") as? String else { return }
+                        guard let toAmount = documentData.get("toAmount") as? String else { return }
+                        guard let currency = documentData.get("currency") as? String else { return }
+                        guard let comissionFee = documentData.get("comissionFee") as? String else { return }
+                        guard let profit = documentData.get("profit") as? Int else { return }
+                        guard let transactionType = documentData.get("transactionType") as? String else { return }
+                        guard let tranDate = documentData.get("tranDate") as? String else { return }
+                        
+                        self.TransactionList.append(Transaction(userEmail: userEmail, fromUnit: fromUnit, toUnit: toUnit, fromAmount: fromAmount, toAmount: toAmount, currency: currency, comissionFee: comissionFee, profit: profit, transactionType: transactionType, tranDate: tranDate))
+                    }
+                    
+                    self.tableView.reloadData()
+                }
+               
+            }
+        }
     }
 }
 
@@ -107,8 +149,16 @@ protocol ScrollViewContained {
     var scrollDelegate: ScrollViewContainingDelegate? { get set }
 }
 
-// MARK:- TableView Cell
-class TVC: UITableViewCell {
-    @IBOutlet weak var lblTitle: UILabel!
-}
 
+struct Transaction {
+    var userEmail : String
+    var fromUnit : String
+    var toUnit : String
+    var fromAmount : String
+    var toAmount : String
+    var currency : String
+    var comissionFee : String
+    var profit : Int
+    var transactionType : StringLiteralType
+    var tranDate : String
+}
