@@ -78,7 +78,7 @@ extension BuySellVewControllerViewController { // DB Operations
     }
     
     func updateStock(){
-        // Satın alınan veya Satılan varlık kaydını getir
+        // Satın alınan veya satılan varlık kaydını getir
         let firestoreDatabase = Firestore.firestore()
         
         firestoreDatabase.collection("Stock").whereField("userEmail", isEqualTo: Auth.auth().currentUser!.email)

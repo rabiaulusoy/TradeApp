@@ -74,12 +74,14 @@
                                         <rect key="frame" x="0.0" y="188" width="414" height="32"/>
                                         <color key="backgroundColor" red="0.070100866260000005" green="0.088295437399999996" blue="0.16653618219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <segments>
-                                            <segment title="YATIRIMLARIM"/>
-                                            <segment title="YATIRIM ALARMLARI"/>
                                             <segment title="İŞLEM GEÇMİŞİ"/>
+                                            <segment title="VARLIKLARIM"/>
                                         </segments>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="selectedSegmentTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hC6-GW-PIF"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="8.715,68" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8d-UR-nMX">
                                         <rect key="frame" x="299" y="151" width="104" height="26.5"/>
@@ -136,7 +138,7 @@
                                 <color key="backgroundColor" red="0.070100866260000005" green="0.088295437399999996" blue="0.16653618219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.070100866260000005" green="0.088295437399999996" blue="0.16653618219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionCell" rowHeight="205" id="j9U-dH-cO8" customClass="TransactionCell" customModule="TradeApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tradeCell" rowHeight="205" id="j9U-dH-cO8" customClass="TradeCell" customModule="TradeApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="394" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j9U-dH-cO8" id="wce-r5-KmW">
@@ -308,6 +310,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="myHeaderView" destination="Slf-XZ-kWG" id="cpG-DT-sr2"/>
+                        <outlet property="segmentedControl" destination="Thv-sJ-uOf" id="FE2-k5-aF3"/>
                         <outlet property="tableView" destination="QQd-0M-iQP" id="PRC-hh-pjK"/>
                     </connections>
                 </viewController>

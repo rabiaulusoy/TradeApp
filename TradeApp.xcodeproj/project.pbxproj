@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		111F7354278DF3FA00845E55 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F7353278DF3FA00845E55 /* Utils.swift */; };
-		111F7357278E09E000845E55 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F7356278E09E000845E55 /* TransactionCell.swift */; };
+		111F7357278E09E000845E55 /* TradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111F7356278E09E000845E55 /* TradeCell.swift */; };
 		11365DFD278B687E006820F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11365DFC278B687E006820F5 /* LoginViewController.swift */; };
 		11365DFF278B6895006820F5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11365DFE278B6895006820F5 /* ProfileViewController.swift */; };
 		11365E01278B68AB006820F5 /* PerformanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11365E00278B68AB006820F5 /* PerformanceViewController.swift */; };
-		11365E03278B6D59006820F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11365E02278B6D59006820F5 /* GoogleService-Info.plist */; };
 		11C0E50C2785AA0F00BC8C12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E50B2785AA0F00BC8C12 /* AppDelegate.swift */; };
 		11C0E50E2785AA0F00BC8C12 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E50D2785AA0F00BC8C12 /* SceneDelegate.swift */; };
 		11C0E5102785AA0F00BC8C12 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C0E50F2785AA0F00BC8C12 /* MainViewController.swift */; };
@@ -24,16 +23,16 @@
 		11DCD2F92790ACB100661345 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCD2F82790ACB100661345 /* Stock.swift */; };
 		11DCD2FB2790ACCB00661345 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCD2FA2790ACCB00661345 /* Enum.swift */; };
 		11DCD2FD2790AD0400661345 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DCD2FC2790AD0400661345 /* Transaction.swift */; };
+		11DCD3012790BDDC00661345 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11DCD3002790BDDC00661345 /* GoogleService-Info.plist */; };
 		854A1D06145E43EA00CCAF5F /* Pods_TradeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B8736532C36354F02860D1 /* Pods_TradeApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		111F7353278DF3FA00845E55 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		111F7356278E09E000845E55 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		111F7356278E09E000845E55 /* TradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeCell.swift; sourceTree = "<group>"; };
 		11365DFC278B687E006820F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		11365DFE278B6895006820F5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11365E00278B68AB006820F5 /* PerformanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceViewController.swift; sourceTree = "<group>"; };
-		11365E02278B6D59006820F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11C0E5082785AA0F00BC8C12 /* TradeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C0E50B2785AA0F00BC8C12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11C0E50D2785AA0F00BC8C12 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		11DCD2F82790ACB100661345 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		11DCD2FA2790ACCB00661345 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		11DCD2FC2790AD0400661345 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		11DCD3002790BDDC00661345 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		72DC3EC4719576197C1B4D02 /* Pods-TradeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeApp.release.xcconfig"; path = "Target Support Files/Pods-TradeApp/Pods-TradeApp.release.xcconfig"; sourceTree = "<group>"; };
 		C4B8736532C36354F02860D1 /* Pods_TradeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TradeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5DEFAB9B3AFEF8DCCDEF382 /* Pods-TradeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeApp.debug.xcconfig"; path = "Target Support Files/Pods-TradeApp/Pods-TradeApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		111F7355278E09C400845E55 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				111F7356278E09E000845E55 /* TransactionCell.swift */,
+				111F7356278E09E000845E55 /* TradeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 				11C0E5192785AA0F00BC8C12 /* LaunchScreen.storyboard */,
 				11C0E51C2785AA0F00BC8C12 /* Info.plist */,
 				11C0E5142785AA0F00BC8C12 /* TradeApp.xcdatamodeld */,
-				11365E02278B6D59006820F5 /* GoogleService-Info.plist */,
+				11DCD3002790BDDC00661345 /* GoogleService-Info.plist */,
 			);
 			path = TradeApp;
 			sourceTree = "<group>";
@@ -217,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11C0E51B2785AA0F00BC8C12 /* LaunchScreen.storyboard in Resources */,
-				11365E03278B6D59006820F5 /* GoogleService-Info.plist in Resources */,
+				11DCD3012790BDDC00661345 /* GoogleService-Info.plist in Resources */,
 				11C0E5182785AA0F00BC8C12 /* Assets.xcassets in Resources */,
 				11C0E5132785AA0F00BC8C12 /* Main.storyboard in Resources */,
 			);
@@ -282,7 +282,7 @@
 				11C0E5162785AA0F00BC8C12 /* TradeApp.xcdatamodeld in Sources */,
 				11365DFF278B6895006820F5 /* ProfileViewController.swift in Sources */,
 				11C0E50E2785AA0F00BC8C12 /* SceneDelegate.swift in Sources */,
-				111F7357278E09E000845E55 /* TransactionCell.swift in Sources */,
+				111F7357278E09E000845E55 /* TradeCell.swift in Sources */,
 				11DCD2F92790ACB100661345 /* Stock.swift in Sources */,
 				11C58F7B278777B700CB151F /* BuySellVewControllerViewController.swift in Sources */,
 			);
