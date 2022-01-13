@@ -9,13 +9,13 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
+    
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func btnSignInClicked(_ sender: Any) {
@@ -48,6 +48,5 @@ class LoginViewController: UIViewController {
         else {
             Utils.makeAlert(vc: self, title: "Hata", message: "Kullanıcı adı ve şifre boş olamaz!")
         }
-       
     }
 }

@@ -17,7 +17,3 @@ class Utils {
     }
 }
 
-enum TransactionType {
-    case Buy
-    case Sell
-}

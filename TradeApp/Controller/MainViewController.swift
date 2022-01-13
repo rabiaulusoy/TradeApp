@@ -11,30 +11,22 @@ import Firebase
 // MARK:- Containing ViewController
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var myHeaderView: UIView!
-    @IBOutlet weak var myContainerView: UIView!
-    @IBOutlet weak var myHeaderViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var myHeaderViewTop: NSLayoutConstraint!
-    @IBOutlet weak var myContainerViewTop: NSLayoutConstraint!
+    var TransactionList : [Transaction] = []
     
-    // how far the header view gets scrolled offscreen
-    var maxScrollAmount: CGFloat {
-        let expandedHeight = myHeaderViewHeight.constant
-        let collapsedHeight = myContainerViewTop.constant
-        return expandedHeight - collapsedHeight
-    }
-
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var myHeaderView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let scrollView = myContainerView.subviews.first as? UIScrollView {
-            // adjust the scroll view's top inset to account for scrolling the header offscreen
-            scrollView.contentInset = UIEdgeInsets(top: maxScrollAmount, left: 0, bottom: 0, right: 0)
-        }
-
-        if var scrollViewContained = children.first as? ScrollViewContained {
-            scrollViewContained.scrollDelegate = self
-        }
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        getDataFromDatabase()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,64 +41,33 @@ class MainViewController: UIViewController {
     }
 }
 
-// MARK:- ScrollViewContaining Delegate
-
-extension MainViewController: ScrollViewContainingDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // need to adjust the content offset to account for the content inset
-        // negative because we are moving the header offscreen
-        let newTopConstraintConstant = -(scrollView.contentOffset.y + scrollView.contentInset.top)
-        myHeaderViewTop.constant = min(0, max(-maxScrollAmount, newTopConstraintConstant))
-        let isAtTop = myHeaderViewTop.constant == -maxScrollAmount
-    }
-}
-
-// MARK:- TableView Controller, ScrollViewContained
-
-class TableViewController: UITableViewController,
-                           ScrollViewContained {
-
-    var TransactionList : [Transaction] = []
-    // used to connect the scrolling to the containing controller
-    weak var scrollDelegate: ScrollViewContainingDelegate?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getDataFromDatabase()
-    }
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // pass scroll events to the containing controller
-        scrollDelegate?.scrollViewDidScroll(scrollView)
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath) as! TransactionCell
-//        cell.setSelected(true, animated: true)
         cell.arrangeCell(transaction: TransactionList[indexPath.row])
         cell.layer.cornerRadius = 10
         cell.layer.borderWidth = 10
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TransactionList.count
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
 }
 
-extension TableViewController {
+extension MainViewController { // DB operations
     func getDataFromDatabase(){
         let firestoreDatabase = Firestore.firestore()
         firestoreDatabase.collection("Transaction").addSnapshotListener { snapShot, error in
@@ -137,28 +98,4 @@ extension TableViewController {
             }
         }
     }
-}
-
-// MARK:- Protocols
-
-protocol ScrollViewContainingDelegate: NSObject {
-    func scrollViewDidScroll(_ scrollView: UIScrollView)
-}
-
-protocol ScrollViewContained {
-    var scrollDelegate: ScrollViewContainingDelegate? { get set }
-}
-
-
-struct Transaction {
-    var userEmail : String
-    var fromUnit : String
-    var toUnit : String
-    var fromAmount : String
-    var toAmount : String
-    var currency : String
-    var comissionFee : String
-    var profit : Int
-    var transactionType : StringLiteralType
-    var tranDate : String
 }

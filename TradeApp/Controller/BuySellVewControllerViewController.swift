@@ -11,10 +11,14 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class BuySellVewControllerViewController: UIViewController {
+    
     var transactionType : TransactionType?
     var calculatedProfit : Int = 0
     var stockList : [Stock] = []
+    var lastChangedField = LastChangedInput.FromUnit
     
+    @IBOutlet weak var btnFrom: UIButton!
+    @IBOutlet weak var btnTo: UIButton!
     @IBOutlet weak var txtFromUnit: UITextField!
     @IBOutlet weak var txtToUnit: UITextField!
     @IBOutlet weak var txtFromAmount: UITextField!
@@ -27,6 +31,8 @@ class BuySellVewControllerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.txtFromUnit.text = "TRY"
+        
         self.tabBarController?.tabBar.isHidden = true
         
         if transactionType == TransactionType.Buy {
@@ -36,16 +42,15 @@ class BuySellVewControllerViewController: UIViewController {
             btnBuySell.titleLabel?.text = "Sell"
             calculatedProfit = calculateProfit() // kaldırılabilir
         }
-        
     }
-    
+
     @IBAction func btnBuySellClicked(_ sender: Any) {
         saveTransactionHistory()
         updateStock()
     }
 }
 
-extension BuySellVewControllerViewController {
+extension BuySellVewControllerViewController { // DB Operations
    
     func saveTransactionHistory(){
         let firestoreDatabase = Firestore.firestore()
@@ -162,11 +167,48 @@ extension BuySellVewControllerViewController {
     }
 }
 
-struct Stock {
-    var userEmail : String
-    var fromUnit : String
-    var toUnit : String
-    var fromAmountTotal : Double
-    var toAmountTotal : Double
-    var currencyAverage : Double
+extension BuySellVewControllerViewController { // UITextFieldDelegate
+    
+    @IBAction func txtFromAmountChanged(_ sender: UITextField) {
+        lastChangedField = LastChangedInput.FromUnit
+        btnFrom.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
+        btnTo.imageView?.image = UIImage(systemName: "circle")
+        
+        let fromAmount = Double(txtFromAmount.text!) ?? 0
+        let currency = Double(txtCurrency.text!) ?? 0
+        
+        if currency != 0 {
+            txtToAmount.text = "\(fromAmount / currency)"
+        }
+    }
+    
+    @IBAction func txtToAmountChanged(_ sender: UITextField) {
+        lastChangedField = LastChangedInput.ToUnit
+        btnTo.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
+        btnFrom.imageView?.image = UIImage(systemName: "circle")
+        
+        let toAmount = Double(txtToAmount.text!) ?? 0
+        let currency = Double(txtCurrency.text!) ?? 0
+        
+        if currency != 0 {
+            txtFromAmount.text = "\(toAmount * currency)"
+        }
+    }
+    
+    @IBAction func txtCurrencyChanged(_ sender: UITextField) {
+        var fromAmount = Double(txtFromAmount.text!) ?? 0
+        var toAmount = Double(txtToAmount.text!) ?? 0
+        let currency = Double(txtCurrency.text!) ?? 0
+
+        if currency == 0 { return }
+        
+        if lastChangedField == LastChangedInput.FromUnit {
+            toAmount = fromAmount / currency
+            txtToAmount.text = "\(toAmount)"
+        }
+        else if lastChangedField == LastChangedInput.ToUnit {
+            fromAmount = toAmount * currency
+            txtFromAmount.text = "\(fromAmount)"
+        }
+    }
 }
