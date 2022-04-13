@@ -13,7 +13,7 @@ class TradeCell: UITableViewCell {
     @IBOutlet weak var lblToAmount: UILabel!
     @IBOutlet weak var lblFromAmount: UILabel!
     @IBOutlet weak var lblCurrency: UILabel!
-    
+    @IBOutlet weak var lblTranType: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +31,7 @@ class TradeCell: UITableViewCell {
             lblToAmount.text = transaction.toAmount
             lblFromAmount.text = transaction.fromAmount
             lblCurrency.text = transaction.currency
+            lblTranType.text = transaction.transactionType == "buy" ? "Alış Fiyatı" : "Satış Fiyatı"
         }
         if let stock = data as? Stock {
             lblToUnit.text = stock.toUnit

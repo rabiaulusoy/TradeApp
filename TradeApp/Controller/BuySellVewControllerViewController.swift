@@ -30,6 +30,8 @@ class BuySellVewControllerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.timeZone = TimeZone.current
         
         self.txtFromUnit.text = "TRY"
         
@@ -64,7 +66,7 @@ extension BuySellVewControllerViewController { // DB Operations
                                     "comissionFee": txtComissionFee.text!,
                                     "profit": transactionType == TransactionType.Buy ? 0 : calculatedProfit,
                                     "transactionType": transactionType == TransactionType.Buy ? "buy" : "sell",
-                                    "tranDate": datePicker.date.description,
+                                    "tranDate": datePicker.date,
                                     "systemDate": FieldValue.serverTimestamp()] as [String:Any]
         firestoreDocument = firestoreDatabase.collection("Transaction").addDocument(data: firestoreTransaction, completion: { error in
             if error != nil {
@@ -80,10 +82,11 @@ extension BuySellVewControllerViewController { // DB Operations
     func updateStock(){
         // Satın alınan veya satılan varlık kaydını getir
         let firestoreDatabase = Firestore.firestore()
-        
+            
         firestoreDatabase.collection("Stock").whereField("userEmail", isEqualTo: Auth.auth().currentUser!.email)
             .whereField("fromUnit", isEqualTo: txtFromUnit.text!)
-            .whereField("toUnit", isEqualTo: txtToUnit.text!).getDocuments { querySnapShot, error in
+            .whereField("toUnit", isEqualTo: txtToUnit.text!)
+            .getDocuments { querySnapShot, error in
                 if error != nil {
                     Utils.makeAlert(vc: self, title: "Error", message: error?.localizedDescription ?? "Error occured when getting data from db!")
                 }
@@ -119,6 +122,8 @@ extension BuySellVewControllerViewController { // DB Operations
                             firestoreDatabase.collection("Stock").document(documentId).updateData(["fromAmountTotal": fromAmountTotal,
                                                                                                    "toAmountTotal": toAmountTotal,
                                                                                                    "currencyAverage" : fromAmountTotal/toAmountTotal])
+                            self.navigationController?.popToRootViewController(animated: true)
+                            self.tabBarController?.selectedIndex = 1
                         }
                         else { // varlıktan çıkar - güncelle
                             guard let documentId = querySnapShot?.documents[0].documentID else { return }
@@ -128,14 +133,16 @@ extension BuySellVewControllerViewController { // DB Operations
                             guard let fromAmountUiDouble = fromAmountUi as? Double else { return }
                             let fromAmountTotal = fromAmountDb - fromAmountUiDouble
                             
-                            let toAmountDb = self.stockList[0].fromAmountTotal
-                            let toAmountUi =  Double(self.txtFromAmount.text!)
+                            let toAmountDb = self.stockList[0].toAmountTotal
+                            let toAmountUi =  Double(self.txtToAmount.text!)
                             guard let toAmountUiDouble = toAmountUi as? Double else { return }
                             let toAmountTotal = toAmountDb - toAmountUiDouble
                             
                             firestoreDatabase.collection("Stock").document(documentId).updateData(["fromAmountTotal": fromAmountTotal,
                                                                                                    "toAmountTotal": toAmountTotal,
                                                                                                    "currencyAverage" : fromAmountTotal/toAmountTotal])
+                            self.navigationController?.popToRootViewController(animated: true)
+                            self.tabBarController?.selectedIndex = 1
                         }
                     }
                     else { // önceden kayıt yok eklemelisin
@@ -178,7 +185,12 @@ extension BuySellVewControllerViewController { // UITextFieldDelegate
         let currency = Double(txtCurrency.text!) ?? 0
         
         if currency != 0 {
-            txtToAmount.text = "\(fromAmount / currency)"
+            if transactionType == TransactionType.Buy {
+                txtToAmount.text = "\(fromAmount / currency)"
+            }
+            else if transactionType == TransactionType.Sell {
+                txtToAmount.text = "\(fromAmount * currency)"
+            }
         }
     }
     
@@ -191,7 +203,12 @@ extension BuySellVewControllerViewController { // UITextFieldDelegate
         let currency = Double(txtCurrency.text!) ?? 0
         
         if currency != 0 {
-            txtFromAmount.text = "\(toAmount * currency)"
+            if transactionType == TransactionType.Buy {
+                txtFromAmount.text = "\(toAmount * currency)"
+            }
+            else if transactionType == TransactionType.Sell {
+                txtFromAmount.text = "\(toAmount / currency)"
+            }
         }
     }
     
@@ -202,13 +219,25 @@ extension BuySellVewControllerViewController { // UITextFieldDelegate
 
         if currency == 0 { return }
         
-        if lastChangedField == LastChangedInput.FromUnit {
-            toAmount = fromAmount / currency
-            txtToAmount.text = "\(toAmount)"
+        if transactionType == TransactionType.Buy {
+            if lastChangedField == LastChangedInput.FromUnit {
+                toAmount = fromAmount / currency
+                txtToAmount.text = "\(toAmount)"
+            }
+            else if lastChangedField == LastChangedInput.ToUnit {
+                fromAmount = toAmount * currency
+                txtFromAmount.text = "\(fromAmount)"
+            }
         }
-        else if lastChangedField == LastChangedInput.ToUnit {
-            fromAmount = toAmount * currency
-            txtFromAmount.text = "\(fromAmount)"
+        else if transactionType == TransactionType.Sell {
+            if lastChangedField == LastChangedInput.FromUnit {
+                toAmount = fromAmount * currency
+                txtToAmount.text = "\(toAmount)"
+            }
+            else if lastChangedField == LastChangedInput.ToUnit {
+                fromAmount = toAmount / currency
+                txtFromAmount.text = "\(fromAmount)"
+            }
         }
     }
 }

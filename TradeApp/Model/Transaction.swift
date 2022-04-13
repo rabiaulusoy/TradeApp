@@ -17,5 +17,5 @@ struct Transaction {
     var comissionFee : String
     var profit : Int
     var transactionType : StringLiteralType
-    var tranDate : String
+    var tranDate : Date
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 // MARK:- Containing ViewController
 class MainViewController: UIViewController {
@@ -101,7 +102,9 @@ extension MainViewController { // DB operations
         let firestoreDatabase = Firestore.firestore()
         
         if selectedSegmentIndex == 0 {
-            firestoreDatabase.collection("Transaction").addSnapshotListener { snapShot, error in
+            firestoreDatabase.collection("Transaction")
+                .whereField("userEmail", isEqualTo: Auth.auth().currentUser!.email)
+                .addSnapshotListener { snapShot, error in
                 if error != nil {
                     Utils.makeAlert(vc: self, title: "Error", message: error?.localizedDescription ?? "Error occured when getting data from db!")
                 }
@@ -116,13 +119,14 @@ extension MainViewController { // DB operations
                             guard let toAmount = documentData.get("toAmount") as? String else { return }
                             guard let currency = documentData.get("currency") as? String else { return }
                             guard let comissionFee = documentData.get("comissionFee") as? String else { return }
+                                        // var comissionFee = "2"
                             guard let profit = documentData.get("profit") as? Int else { return }
                             guard let transactionType = documentData.get("transactionType") as? String else { return }
-                            guard let tranDate = documentData.get("tranDate") as? String else { return }
+                            guard let tranDate = documentData.get("tranDate") as? Timestamp else { return }
                             
-                            self.TransactionList.append(Transaction(userEmail: userEmail, fromUnit: fromUnit, toUnit: toUnit, fromAmount: fromAmount, toAmount: toAmount, currency: currency, comissionFee: comissionFee, profit: profit, transactionType: transactionType, tranDate: tranDate))
+                            self.TransactionList.append(Transaction(userEmail: userEmail, fromUnit: fromUnit, toUnit: toUnit, fromAmount: fromAmount, toAmount: toAmount, currency: currency, comissionFee: comissionFee, profit: profit, transactionType: transactionType, tranDate: tranDate.dateValue()))
                         }
-                        
+                        self.TransactionList.sort(by: {$0.tranDate > $1.tranDate} )
                         self.tableView.reloadData()
                     }
                    
@@ -130,7 +134,9 @@ extension MainViewController { // DB operations
             }
         }
         else {
-            firestoreDatabase.collection("Stock").addSnapshotListener { snapShot, error in
+            firestoreDatabase.collection("Stock")
+                .whereField("userEmail", isEqualTo: Auth.auth().currentUser!.email)
+                .addSnapshotListener { snapShot, error in
                 if error != nil {
                     Utils.makeAlert(vc: self, title: "Error", message: error?.localizedDescription ?? "Error occured when getting data from db!")
                 }
